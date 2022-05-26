@@ -1,0 +1,9 @@
+{
+    "name": "chat",
+    "version": "1.0.0",
+    "dependencies": {
+        "mongodb": "^4.4.14",
+        "websocket": "^1.0.31",
+        "ws": "^7.2.1"
+    }
+}
