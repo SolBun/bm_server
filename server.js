@@ -632,9 +632,9 @@ function insertAll(id) {
         return;
     }
     active_db = true;
-    const mongoClient = new MongoClient("mongodb://rs01/rc1b-5xqb6qd8tfctnsi3.mdb.yandexcloud.net:27018/", { useNewUrlParser: true, useUnifiedTopology: true });
-    mongoClient.connect(function (err, client) {
-        const db = client.db("chatdb");
+    // const mongoClient = new MongoClient("mongodb://rs01/rc1b-5xqb6qd8tfctnsi3.mdb.yandexcloud.net:27018/", { useNewUrlParser: true, useUnifiedTopology: true });
+    MongoClient.connect("mongodb://rs01/rc1b-5xqb6qd8tfctnsi3.mdb.yandexcloud.net:27018/", { useNewUrlParser: true, useUnifiedTopology: true }, function (err, client) {
+        const db = client("chatdb");
         db.dropDatabase();
         private = client;
 
