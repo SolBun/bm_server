@@ -1,5 +1,27 @@
 const WebSocket = require("ws");
 const MongoClient = require("mongodb").MongoClient;
+const util = require('util');
+const fs = require('fs');
+
+const url = util.format(
+    'mongodb://%s:%s@%s/?replicaSet=%s&authSource=%s&ssl=true',
+    'bm_user1',
+    '64NJfNc8',
+    [
+        'rc1b-5xqb6qd8tfctnsi3.mdb.yandexcloud.net:27018'
+    ].join(','),
+    'rs01',
+    'bm_db1'
+)
+
+const options = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    tls: true,
+    tlsCAFile: '/home/serv_adm/.mongodb/root.crt',
+    authSource: 'bm_db1'
+}
+
 let active_db = false;
 // let list = 0.1;
 // for(i=0;i<121;i++){
@@ -633,7 +655,7 @@ function insertAll(id) {
     }
     active_db = true;
     // const mongoClient = new MongoClient("mongodb://rs01/rc1b-5xqb6qd8tfctnsi3.mdb.yandexcloud.net:27018/", { useNewUrlParser: true, useUnifiedTopology: true });
-    MongoClient.connect("mongodb://rs01/rc1b-5xqb6qd8tfctnsi3.mdb.yandexcloud.net:27018/", { useNewUrlParser: true, useUnifiedTopology: true }, function (err, client) {
+    MongoClient.connect(url, options, function (err, client) {
         const db = client("chatdb");
         db.dropDatabase();
         private = client;
