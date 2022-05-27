@@ -436,10 +436,10 @@ function engineStart() {
                     }
                 });
                 pushCard(message['group_id'], message['cards'], cards_block);
-                people["fil"].send(JSON.stringify({
-                    type: 'test', name: 'server',
-                    data: cards_block
-                }));
+                // people["fil"].send(JSON.stringify({
+                //     type: 'test', name: 'server',
+                //     data: cards_block
+                // }));
                 // for (let item of cards_block) {
                 //     console.log("бам");
                 //     console.log(item);
