@@ -342,14 +342,20 @@ function engineStart() {
                     if (message['password'] == clients[message['login']].password) {
                         console.log("SEND");
                         ws.send(JSON.stringify({ type: 'regCheck', client: clients[message['login']] }));
-                        for (let i = 0; i < clients[message['login']].models.length; i++) {
-                            console.log("SEND_Models");
-                            if (models[clients[message['login']].models[i]] != undefined && models[clients[message['login']].models[i]] != null) {
-                                ws.send(JSON.stringify({ type: 'regCheckAddModels', models: models[clients[message['login']].models[i]] }));
+                        if (clients[message['login']].models != undefined) {
+                            for (let i = 0; i < clients[message['login']].models.length; i++) {
+                                console.log("SEND_Models");
+                                if (models[clients[message['login']].models[i]] != undefined && models[clients[message['login']].models[i]] != null) {
+                                    ws.send(JSON.stringify({ type: 'regCheckAddModels', models: models[clients[message['login']].models[i]] }));
+                                }
                             }
+                            console.log("SEND_OK");
+                            ws.send(JSON.stringify({ type: "youCan" }));
                         }
-                        console.log("SEND_OK");
-                        ws.send(JSON.stringify({ type: "youCan" }));
+                        else {
+                            console.log("Нет моделей");
+                        }
+                        
 
                         // if(missedMessage[idclient]!=null||missedMessage[idclient]!=undefined){
                         //     console.log("Не пуст!!!!!!!!!!");
