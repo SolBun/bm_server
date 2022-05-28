@@ -516,24 +516,27 @@ function engineStart() {
 
                 console.log("==Понеслась😎😋😋==");
                 console.log(message);
+                // add_group(id_group, group, cards_block)
+
                 // model_id: 0, fragment_id: fragment_id, block_id: block_id, group_id: group_id, cards: list_cards
 
-                // let cards_block = models[message['model_id']].data[message['fragment_id']].values[message['block_id']];
-                // let users = models[message['model_id']].users;
+                let cards_block = models[message['model_id']].data[message['fragment_id']].values[message['block_id']];
+                let users = models[message['model_id']].users;
 
-                // users.forEach(clientId => {
-                //     if (checkStatus(clientId) && (clientId != message['name'])) {
-                //         people[clientId].send(JSON.stringify({
-                //             type: 'addGroup', name: 'server',
-                //             model_id: message['model_id'],
-                //             fragment_id: message['fragment_id'],
-                //             block_id: message['block_id'],
-                //             group_id: message['group_id'],
-                //             cards: message['cards']
-                //         }));
-                //     }
-                // });
-
+                // { type: "addGroup", model_id: 0, fragment_id: 0, name:this.login, block_id: block_id, group_id: group_id, group: group }));
+                users.forEach(clientId => {
+                    if (checkStatus(clientId) && (clientId != message['name'])) {
+                        people[clientId].send(JSON.stringify({
+                            type: 'addGroup', name: 'server',
+                            model_id: message['model_id'],
+                            fragment_id: message['fragment_id'],
+                            block_id: message['block_id'],
+                            group_id: message['group_id'],
+                            group: message['group']
+                        }));
+                    }
+                });
+                add_group(message['group_id'], message['group'], cards_block);
                 // add_group(id_group, group, cards_block)
                 // for (let item of cards_block) {
                 //     console.log("бам");
