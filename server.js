@@ -662,7 +662,7 @@ function insertAll(id) {
     active_db = true;
     // const mongoClient = new MongoClient("mongodb://rs01/rc1b-5xqb6qd8tfctnsi3.mdb.yandexcloud.net:27018/", { useNewUrlParser: true, useUnifiedTopology: true });
     MongoClient.connect(url, options, function (err, client) {
-        const db = client("chatdb");
+        const db = client.db("bm_db1");
         db.dropDatabase();
         private = client;
 
