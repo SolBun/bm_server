@@ -514,41 +514,42 @@ function engineStart() {
             if (message['type'] == 'addGroup') {
 
 
-                console.log("==Понеслась😁==");
+                console.log("==Понеслась😎😋😋==");
+                console.log(message);
                 // model_id: 0, fragment_id: fragment_id, block_id: block_id, group_id: group_id, cards: list_cards
 
-                let cards_block = models[message['model_id']].data[message['fragment_id']].values[message['block_id']];
-                let users = models[message['model_id']].users;
+                // let cards_block = models[message['model_id']].data[message['fragment_id']].values[message['block_id']];
+                // let users = models[message['model_id']].users;
 
-                users.forEach(clientId => {
-                    if (checkStatus(clientId) && (clientId != message['name'])) {
-                        people[clientId].send(JSON.stringify({
-                            type: 'addGroup', name: 'server',
-                            model_id: message['model_id'],
-                            fragment_id: message['fragment_id'],
-                            block_id: message['block_id'],
-                            group_id: message['group_id'],
-                            cards: message['cards']
-                        }));
-                    }
-                });
+                // users.forEach(clientId => {
+                //     if (checkStatus(clientId) && (clientId != message['name'])) {
+                //         people[clientId].send(JSON.stringify({
+                //             type: 'addGroup', name: 'server',
+                //             model_id: message['model_id'],
+                //             fragment_id: message['fragment_id'],
+                //             block_id: message['block_id'],
+                //             group_id: message['group_id'],
+                //             cards: message['cards']
+                //         }));
+                //     }
+                // });
 
                 // add_group(id_group, group, cards_block)
-                for (let item of cards_block) {
-                    console.log("бам");
-                    console.log(item);
-                    if ((item.id_group != null) && (item.id_group != undefined)) {
-                        console.log("Залетел_1");
-                        if (item.id_group == message['group_id']) {
-                            console.log("Нашёл_1");
-                            item.group_cards.push(message['cards']);
-                        } else {
-                            console.log("Ушёл_1");
-                            pushCard(message['group_id'], message['cards'], item.group_cards);
-                        }
-                    }
-                }
-                console.log(models[message['model_id']].data[message['fragment_id']].values[message['block_id']]);
+                // for (let item of cards_block) {
+                //     console.log("бам");
+                //     console.log(item);
+                //     if ((item.id_group != null) && (item.id_group != undefined)) {
+                //         console.log("Залетел_1");
+                //         if (item.id_group == message['group_id']) {
+                //             console.log("Нашёл_1");
+                //             item.group_cards.push(message['cards']);
+                //         } else {
+                //             console.log("Ушёл_1");
+                //             pushCard(message['group_id'], message['cards'], item.group_cards);
+                //         }
+                //     }
+                // }
+                // console.log(models[message['model_id']].data[message['fragment_id']].values[message['block_id']]);
 
                 // people["fil"].send(JSON.stringify({
                 //     type: 'addCard', name: 'server',
