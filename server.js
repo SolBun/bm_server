@@ -759,7 +759,7 @@ function checkStatus(id) {
     }
 }
 function add_group(id_group, group, cards_block) {
-    if ((group_id != undefined) && (group != undefined) && (cards_block != undefined)) {
+    if ((id_group != undefined) && (group != undefined) && (cards_block != undefined)) {
         if (id_group == null){
             cards_block.push(group);
             // for (let item of cards_block) {
